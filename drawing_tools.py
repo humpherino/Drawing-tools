@@ -1,65 +1,82 @@
-
-from turtle import*   # do and val are inputs for the function
+from turtle import *  # Do and val are inputs.
 from tkinter import ttk, Text
 
-def escape():    #quit function
+
+def escape():  # Quit function.
     app.destroy()
 
-def calc(*args):   #Defines the movement calculation
-    in_text = (input1.get()) #gets the text from input1
+
+def calc(*args):  # Defines the movement calculation.
+    in_text = (input1.get())  # Gets the text from input1.
+
     try:
-        movement_amount=int(in_text) #TC requires that the number be an int
+        movement_amount = int(in_text)  # TC requires that the number be an int
     except:
         pass
 
-        
-    def TC (do,val):   #So TC is the function name - needs to be called when running the program
-        do = do.upper() #converts all to CAPITAL letters
-        if do =='F':
-            forward(val)    # Turns a do value of F into turtle command forward
-        elif do == 'B':
-            backward(val)
-        elif do == 'R':
-            right(val)
-        elif do == 'L':
-            left(val)
-        elif do == 'U':
-            penup()
-        elif do == 'D':
-            pendown()
-        elif do == 'N':
-            reset()
 
-        else:
+def TC(do, val):  # TC is func name, must be called when running program
 
-            print('Duds command, you lump!')
+    do = do.upper()  # Converts all to CAPITAL letters
+
+    if do == 'F':
+        forward(val)    # Turns a do value of F into turtle command forward
+    elif do == 'B':
+        backward(val)
+    elif do == 'R':
+        right(val)
+    elif do == 'L':
+        left(val)
+    elif do == 'U':
+        penup()
+    elif do == 'D':
+        pendown()
+    elif do == 'N':
+        reset()
+    else:
+        print('Duds command, you lump!')
 
 
 def ctrla(*args):
-    focused = mainframe.focus_get()     
+
+    focused = mainframe.focus_get()
     focused.tag_add(SEL, "1.0", END)
     focused.mark_set(INSERT, "1.0")
     focused.see(INSERT)
+
     return 'break'
 
+
 def fAction():
-    TC('f',i)
+    TC('f', i)
+
+
 def bAction():
-    TC('b',i)
+    TC('b', i)
+
+
 def rAction():
-    TC('r',i)
+    TC('r', i)
+
+
 def lAction():
-    TC('l',i)
+    TC('l', i)
+
+
 def uAction():
-    TC('u',i)
+    TC('u', i)
+
+
 def dAction():
-    TC('d',i)
+    TC('d', i)
+
+
 def nAction():
-    TC('n',i)
+    TC('n', i)
 
 if __name__ == '__main__':
-    
-    app = Tk() # 'app' will be on the top layer
+
+    app = Tk()  # 'app' will be on the top layer
     # Tk main frame, title and more
 
     app.title('Draw Controls')
@@ -68,7 +85,7 @@ if __name__ == '__main__':
     mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
     buttons.grid(column=0, row=1)
 
-    #form components
+    # Form components
 
     in_label = ttk.Label(mainframe, text="Movement Amount:")
     in_label.grid(column=0, row=0)
@@ -76,7 +93,7 @@ if __name__ == '__main__':
     input1.insert("")
     input1.grid(column=0, row=4)
 
-    #defining the buttons
+    # Defining the buttons
 
     ttk.Button(buttons, text="Go", command=calc).grid(column=0, row=0)
     ttk.Button(buttons, text="Exit", command=escape).grid(column=1, row=0)
@@ -86,17 +103,16 @@ if __name__ == '__main__':
     ttk.Button(buttons, text="Left", command=lAction).grid(column=0, row=2)
     ttk.Button(buttons, text="Reset", command=nAction).grid(column=1, row=2)
     ttk.Button(buttons, text="Right", command=rAction).grid(column=2, row=2)
-    ttk.Button(buttons, text="Backwards", command=bAction).grid(column=1, row=3)
+    ttk.Button(buttons, text="Back", command=bAction).grid(column=1, row=3)
 
-    input1.focus() #focus the input box upon launch
-    app.bind('<Return>', calc)   #allows for use of enter key as submit
+    input1.focus()  # Focus the input box upon launch
+    app.bind('<Return>', calc)   # Allows for use of enter key as submit
     app.bind('<Escape>', escape)
 
-    #allow for the use of control+a to select all of the text
+    # Allow for the use of control+a to select all of the text
 
     app.bind('<Control-a>', ctrla)
 
-    #infinite loop
+    # Infinite loop
 
     app.mainloop()
-    
