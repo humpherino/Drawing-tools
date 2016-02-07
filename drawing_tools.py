@@ -46,12 +46,14 @@ def ctrla(*args):
 
     return 'break'
 
-# humph, write a comment here explaining what this does.
+# recieves infomation about what button was pressed and send that information to the TC function
 
 def action(kind):
-    TC(kind,i)
+    TC(kind,movement_amount)
 
 if __name__ == '__main__':
+    #variables
+    movement_amount = 0
 
     app = Tk()  # 'app' will be on the top layer
     # Tk main frame, title and more
