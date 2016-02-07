@@ -46,33 +46,10 @@ def ctrla(*args):
 
     return 'break'
 
+# humph, write a comment here explaining what this does.
 
-def fAction():
-    TC('f', i)
-
-
-def bAction():
-    TC('b', i)
-
-
-def rAction():
-    TC('r', i)
-
-
-def lAction():
-    TC('l', i)
-
-
-def uAction():
-    TC('u', i)
-
-
-def dAction():
-    TC('d', i)
-
-
-def nAction():
-    TC('n', i)
+def action(kind):
+    TC(kind,i)
 
 if __name__ == '__main__':
 
@@ -97,13 +74,13 @@ if __name__ == '__main__':
 
     ttk.Button(buttons, text="Go", command=calc).grid(column=0, row=0)
     ttk.Button(buttons, text="Exit", command=escape).grid(column=1, row=0)
-    ttk.Button(buttons, text="Pen up", command=uAction).grid(column=0, row=1)
-    ttk.Button(buttons, text="Forward", command=fAction).grid(column=1, row=1)
-    ttk.Button(buttons, text="Pen Down", command=dAction).grid(column=2, row=1)
-    ttk.Button(buttons, text="Left", command=lAction).grid(column=0, row=2)
-    ttk.Button(buttons, text="Reset", command=nAction).grid(column=1, row=2)
-    ttk.Button(buttons, text="Right", command=rAction).grid(column=2, row=2)
-    ttk.Button(buttons, text="Back", command=bAction).grid(column=1, row=3)
+    ttk.Button(buttons, text="Pen up", command=lambda: action('u').grid(column=0, row=1)
+    ttk.Button(buttons, text="Forward", command=lambda: action('f')).grid(column=1, row=1)
+    ttk.Button(buttons, text="Pen Down", command=lambda: action('d')).grid(column=2, row=1)
+    ttk.Button(buttons, text="Left", command=lambda: action('l')).grid(column=0, row=2)
+    ttk.Button(buttons, text="Reset", command=lambda: action('n')).grid(column=1, row=2)
+    ttk.Button(buttons, text="Right", command=lambda: action('r')).grid(column=2, row=2)
+    ttk.Button(buttons, text="Back", command=lambda: action('b')).grid(column=1, row=3)
 
     input1.focus()  # Focus the input box upon launch
     app.bind('<Return>', calc)   # Allows for use of enter key as submit
