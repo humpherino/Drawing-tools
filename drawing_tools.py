@@ -8,12 +8,12 @@ def escape():  # Quit function.
 
 
 def calc(*args):  # Defines the movement calculation.
-    in_text = (input1.get())  # Gets the text from input1.
-
+    in_text = (input1.get())  # Gets the text from input1
     try:
-        movement_amount = int(in_text)  # TC requires that the number be an int
+        int_output = int(in_text)  # TC requires that the number be an int
+        return int_output
     except:
-        pass
+        return 0
 
 
 def TC(do, val):  # TC is func name, must be called when running program
@@ -50,7 +50,9 @@ def ctrla(*args):
 # recieves infomation about what button was pressed and send that information to the TC function
 
 def action(kind):
-    TC(kind,movement_amount)
+    amount = calc() # Get from textbox.
+    TC(kind,amount)
+
 
 if __name__ == '__main__':
     #variables
@@ -85,7 +87,6 @@ if __name__ == '__main__':
     ttk.Button(buttons, text="Back", command=lambda: action('b')).grid(column=1, row=3)
 
     input1.focus()  # Focus the input box upon launch
-    app.bind('<Return>', calc)   # Allows for use of enter key as submit
     app.bind('<Escape>', escape)
 
     # Allow for the use of control+a to select all of the text
