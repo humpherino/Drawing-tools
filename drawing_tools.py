@@ -1,4 +1,5 @@
 from turtle import *  # Do and val are inputs.
+from tkinter import *
 from tkinter import ttk, Text
 
 
@@ -46,19 +47,21 @@ def ctrla(*args):
 
     return 'break'
 
-# humph, write a comment here explaining what this does.
+# recieves infomation about what button was pressed and send that information to the TC function
 
 def action(kind):
-    TC(kind,i)
+    TC(kind,movement_amount)
 
 if __name__ == '__main__':
+    #variables
+    movement_amount = 0
 
     app = Tk()  # 'app' will be on the top layer
     # Tk main frame, title and more
 
     app.title('Draw Controls')
     mainframe = ttk.Frame(app, padding="8 8 8 8")
-    buttons = ttk.Frame(app, paddding="0 0 0 0", width=50, height=20)
+    buttons = ttk.Frame(app, width=50)
     mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
     buttons.grid(column=0, row=1)
 
@@ -66,15 +69,14 @@ if __name__ == '__main__':
 
     in_label = ttk.Label(mainframe, text="Movement Amount:")
     in_label.grid(column=0, row=0)
-    input1 = Entry(mainframe, width=64, height=8)
-    input1.insert("")
+    input1 = Entry(mainframe, width=64)
     input1.grid(column=0, row=4)
 
     # Defining the buttons
 
     ttk.Button(buttons, text="Go", command=calc).grid(column=0, row=0)
     ttk.Button(buttons, text="Exit", command=escape).grid(column=1, row=0)
-    ttk.Button(buttons, text="Pen up", command=lambda: action('u').grid(column=0, row=1)
+    ttk.Button(buttons, text="Pen up", command=lambda: action('u')).grid(column=0, row=1)
     ttk.Button(buttons, text="Forward", command=lambda: action('f')).grid(column=1, row=1)
     ttk.Button(buttons, text="Pen Down", command=lambda: action('d')).grid(column=2, row=1)
     ttk.Button(buttons, text="Left", command=lambda: action('l')).grid(column=0, row=2)
